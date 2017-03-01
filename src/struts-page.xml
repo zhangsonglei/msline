@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="page" extends="json-default" namespace="/">
+	
+	  	<action name="Login*" class="com.nkl.page.action.LoginAction" method="{1}">
+	  		<result name="success" type="json">
+	  			<param name="ignoreHierarchy">false</param>
+            	<param name="includeProperties">
+					success,data.*
+				</param>
+            </result>
+            <result name="error" type="json">
+            	<param name="ignoreHierarchy">false</param>
+			    <param name="includeProperties">
+					success,err.*
+				</param>
+			</result>
+	  	</action>
+	  	
+	  	<action name="page_*" class="com.nkl.page.action.IndexAction" method="{1}">
+	  		<result name="error">Error.jsp</result>
+	  		<result name="index">default.jsp</result>
+	  		<result name="music">music.jsp</result>
+	  		<result name="musicNew">musicNew.jsp</result>
+	  		<result name="musicDetail">musicDetail.jsp</result>
+	  		<result name="success" type="json">
+	  			<param name="ignoreHierarchy">false</param>
+            	<param name="includeProperties">
+					success,data.*
+				</param>
+            </result>
+            <result name="error2" type="json">
+            	<param name="ignoreHierarchy">false</param>
+			    <param name="includeProperties">
+					success,err.*
+				</param>
+			</result>
+			<result name="reg">reg.jsp</result>
+			<result name="userInfo">myInfo.jsp</result>
+	  		<result name="userPwd">myPwd.jsp</result>
+	  		<result name="myOrdersShow">myOrdersShow.jsp</result>
+	  	</action>
+	  	
+	  	 <action name="DownLoad" class="com.nkl.page.action.DownLoadAction">
+	  	   <param name="inputPath">images/music</param>	  
+	  	   <result name="success" type="stream">
+	  	     <!-- 下载文件类型定义 -->   
+	  	     <param name="contentType">${contentType}</param>  
+	  	     <!-- 下载文件处理方法 -->   
+	  	     <param name="contentDisposition">attachment;filename=${chininessName2}</param>   
+	  	     <!-- 下载文件输出流定义 -->   
+	  	     <param name="inputName">downLoadFile</param>  
+	  	     <!-- 指定下载文件的缓冲大小 -->
+			 <param name="bufferSize">4096</param>  
+	  	   </result>  
+	  	   <result name="error">Error.html</result>
+  	    </action>
+	  	 
+	</package>
+</struts>    
